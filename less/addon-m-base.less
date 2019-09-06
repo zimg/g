@@ -1,0 +1,14 @@
+#main{
+  @background();
+}
+@rules:{
+  width: 200px;
+  height: 200px;
+  border: solid 1px red;
+};
+#con{
+  @rules();
+}
+body {
+  background: url("@{images}/dog.png");//变量名 必须使用大括号包裹
+}
