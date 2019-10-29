@@ -858,8 +858,8 @@ function loadcss(cssname) {
 	if (!CSSLOADED[cssname]) {
 		if (!$('css_' + cssname)) {
 			css = document.createElement('link');
-			css.id = 'css_' + cssname,
-				css.type = 'text/css';
+			css.id = 'css_' + cssname;
+			css.type = 'text/css';
 			css.rel = 'stylesheet';
 			css.href = 'data/cache/style_' + STYLEID + '_' + cssname + '.css?' + VERHASH;
 			var headNode = document.getElementsByTagName("head")[0];
