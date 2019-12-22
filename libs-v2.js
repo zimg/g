@@ -315,7 +315,7 @@ var $libs = {
             window.addEventListener("load", top_onload, false);
         }
         document.getElementById(id).onclick = function () {
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
         };
     },
     // $webp
@@ -340,7 +340,7 @@ var $libs = {
             bp.src = 'http://push.zhanzhang.baidu.com/push.js';
         }
         var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
+            s.parentNode.insertBefore(bp, s);
     },
     // 统计
     eve_stat: function () {
@@ -349,9 +349,9 @@ var $libs = {
             var _hmt = _hmt || [];
             (function () {
                 var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?" + $sc['stat']['baidu'];
+                    hm.src = "https://hm.baidu.com/hm.js?" + $sc['stat']['baidu'];
                 var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
+                    s.parentNode.insertBefore(hm, s);
             })();
         }
         // cnzz
