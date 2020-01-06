@@ -206,7 +206,6 @@ var $libs = {
             is_wechat: !!u.match(/micromessenger/i) === 'micromessenger'
         };
     }(),
-
     // web版在pc版 显示
     mobile_show_css:function(){
         var dom = document.getElementsByTagName('html')[0],
@@ -250,7 +249,7 @@ var $libs = {
         input = input || 'q';
         len = len || 2;
         if (obj && obj[input]) {
-            return (obj && obj[input] && obj[input].value && obj[input].value.length && obj[input].value.length > len) ? true : false;
+            return !!(obj && obj[input] && obj[input].value && obj[input].value.length && obj[input].value.length > len);
         }
         return false;
     },
@@ -271,7 +270,7 @@ var $libs = {
         document.write('<style type="text/css">#qrocdeContainer{position: fixed;z-index: 999;bottom: 0;left: 0;}#qrcodeMessage{background:#fff;width:' + config.width + 'px;padding:8px;text-align:center;float:right;}@media screen and (max-width: ' + config.maxScreen + 'px) {#qrocdeContainer{display:none;}}</style>');
         document.write('<div id="qrocdeContainer"><div id="qrcodeMessage"><div id="qrcode"></div><div>' + config.message + '</div></div></div>');
         window.jQuery(config.id).qrcode({
-            width: config.width,
+            width : config.width,
             height: config.height,
             correctLevel: 0,
             text: mobile_url2
@@ -281,7 +280,7 @@ var $libs = {
     gotop: function (id) {
         id = id || "index-scroll";
         var c = document.getElementById(id);
-        var isie6 = (window && window.XMLHttpRequest) ? false : true;
+        var isie6 = (!(window && window.XMLHttpRequest));
         var top_onscroll = function () {
             var a = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
             if (a > 0) {
