@@ -1,0 +1,26 @@
+{
+  "name": "zimg.g",
+  "version": "1.0.0",
+  "description": "Global public static files",
+  "main": "libs-v2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zimg/g.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zimg/g/issues"
+  },
+  "homepage": "https://github.com/zimg/g#readme",
+  "dependencies": {
+    "@types/jquery": "^3.3.31"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
