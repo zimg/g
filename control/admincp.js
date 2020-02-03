@@ -1,9 +1,3 @@
-/*
-	[Discuz!] (C)2001-2009 Comsenz Inc.
-	This is NOT a freeware, use is subject to license terms
-
-	$Id: admincp.js 22381 2011-05-05 03:05:16Z monkey $
-*/
 
 function redirect(url) {
     window.location.replace(url);
@@ -20,23 +14,23 @@ function scrollTopBody() {
 }
 
 function checkAll(type, form, value, checkall, changestyle) {
-    var checkall = checkall ? checkall : 'chkall';
+    checkall = checkall ? checkall : 'chkall';
     for (var i = 0; i < form.elements.length; i++) {
         var e = form.elements[i];
-        if (type == 'option' && e.type == 'radio' && e.value == value && e.disabled != true) {
+        if (type === 'option' && e.type === 'radio' && e.value === value && e.disabled !== true) {
             e.checked = true;
-        } else if (type == 'value' && e.type == 'checkbox' && e.getAttribute('chkvalue') == value) {
+        } else if (type === 'value' && e.type === 'checkbox' && e.getAttribute('chkvalue') === value) {
             e.checked = form.elements[checkall].checked;
             if (changestyle) {
                 multiupdate(e);
             }
-        } else if (type == 'prefix' && e.name && e.name != checkall && (!value || (value && e.name.match(value)))) {
+        } else if (type === 'prefix' && e.name && e.name !== checkall && (!value || (value && e.name.match(value)))) {
             e.checked = form.elements[checkall].checked;
             if (changestyle) {
-                if (e.parentNode && e.parentNode.tagName.toLowerCase() == 'li') {
+                if (e.parentNode && e.parentNode.tagName.toLowerCase() === 'li') {
                     e.parentNode.className = e.checked ? 'checked' : '';
                 }
-                if (e.parentNode.parentNode && e.parentNode.parentNode.tagName.toLowerCase() == 'div') {
+                if (e.parentNode.parentNode && e.parentNode.parentNode.tagName.toLowerCase() === 'div') {
                     e.parentNode.parentNode.className = e.checked ? 'item checked' : 'item';
                 }
             }
@@ -70,15 +64,15 @@ function altStyle(obj, disabled) {
             }
             cc = 1;
             input = this.getElementsByTagName('input')[0];
-            if (input.getAttribute('type') == 'checkbox' || input.getAttribute('type') == 'radio') {
-                if (input.getAttribute('type') == 'radio') {
+            if (input.getAttribute('type') === 'checkbox' || input.getAttribute('type') === 'radio') {
+                if (input.getAttribute('type') === 'radio') {
                     altStyleClear(this);
                 }
 
-                if (BROWSER.ie || o != 'INPUT' && input.onclick) {
+                if (BROWSER.ie || o !== 'INPUT' && input.onclick) {
                     input.click();
                 }
-                if (this.className != 'checked') {
+                if (this.className !== 'checked') {
                     this.className = 'checked';
                     input.checked = true;
                 } else {
@@ -90,7 +84,7 @@ function altStyle(obj, disabled) {
                     mi = 0;
                     while ($(miid[0] + '|' + mi)) {
                         $(miid[0] + '|' + mi).checked = input.checked;
-                        if (input.getAttribute('type') == 'radio') {
+                        if (input.getAttribute('type') === 'radio') {
                             altStyleClear($(miid[0] + '|' + mi).parentNode);
                         }
                         $(miid[0] + '|' + mi).parentNode.className = input.checked ? 'checked' : '';
@@ -108,11 +102,11 @@ function altStyle(obj, disabled) {
 var addrowdirect = 0;
 
 function addrow(obj, type) {
-    var table = obj.parentNode.parentNode.parentNode.parentNode.parentNode;
+    var row,table = obj.parentNode.parentNode.parentNode.parentNode.parentNode;
     if (!addrowdirect) {
-        var row = table.insertRow(obj.parentNode.parentNode.parentNode.rowIndex);
+        row = table.insertRow(obj.parentNode.parentNode.parentNode.rowIndex);
     } else {
-        var row = table.insertRow(obj.parentNode.parentNode.parentNode.rowIndex + 1);
+        row = table.insertRow(obj.parentNode.parentNode.parentNode.rowIndex + 1);
     }
     var typedata = rowtypedata[type];
     for (var i = 0; i <= typedata.length - 1; i++) {
@@ -150,12 +144,12 @@ function textareasize(obj, op) {
     if (!op) {
         if (obj.scrollHeight > 70) {
             obj.style.height = (obj.scrollHeight < 300 ? obj.scrollHeight - heightag : 300) + 'px';
-            if (obj.style.position == 'absolute') {
+            if (obj.style.position === 'absolute') {
                 obj.parentNode.style.height = (parseInt(obj.style.height) + 20) + 'px';
             }
         }
     } else {
-        if (obj.style.position == 'absolute') {
+        if (obj.style.position === 'absolute') {
             obj.style.position = '';
             obj.style.width = '';
             obj.parentNode.style.height = '';
@@ -170,7 +164,7 @@ function textareasize(obj, op) {
 function showanchor(obj) {
     var navs = $('submenu').getElementsByTagName('li');
     for (var i = 0; i < navs.length; i++) {
-        if (navs[i].id.substr(0, 4) == 'nav_' && navs[i].id != obj.id) {
+        if (navs[i].id.substr(0, 4) === 'nav_' && navs[i].id !== obj.id) {
             if ($(navs[i].id.substr(4))) {
                 navs[i].className = '';
                 $(navs[i].id.substr(4)).style.display = 'none';
@@ -194,12 +188,12 @@ function updatecolorpreview(obj) {
 }
 
 function entersubmit(e, name) {
-    var e = e ? e : event;
-    if (e.keyCode != 13) {
+    e = e ? e : event;
+    if (e.keyCode !== 13) {
         return;
     }
     var tag = BROWSER.ie ? e.srcElement.tagName : e.target.tagName;
-    if (tag != 'TEXTAREA') {
+    if (tag !== 'TEXTAREA') {
         doane(e);
         if ($('submit_' + name).offsetWidth) {
             $('formscrolltop').value = document.documentElement.scrollTop;
@@ -211,37 +205,36 @@ function entersubmit(e, name) {
 function parsetag(tag) {
     var parse = function (tds) {
         for (var i = 0; i < tds.length; i++) {
-            if (tds[i].getAttribute('s') == '1') {
+            if (tds[i].getAttribute('s') === '1') {
                 var str = tds[i].innerHTML.replace(/(^|>)([^<]+)(?=<|$)/ig, function ($1, $2, $3) {
-                    if (tag && $3.indexOf(tag) != -1) {
+                    if (tag && $3.indexOf(tag) !== -1) {
                         re = new RegExp(tag, "g");
                         $3 = $3.replace(re, '<h_>');
                     }
                     return $2 + $3;
                 });
                 tds[i].innerHTML = str.replace(/<h_>/ig, function ($1, $2) {
-                    return '<font class="highlight">' + tag + '</font>';
+                    return '<span class="highlight">' + tag + '</span>';
                 });
             }
         }
-    }
+    };
     parse(document.body.getElementsByTagName('td'));
     parse(document.body.getElementsByTagName('span'));
 }
 
 function sdisplay(id, obj) {
-    obj.innerHTML = $(id).style.display == 'none' ? '<img src="static/image/admincp/desc.gif" style="vertical-align:middle" />' : '<img src="static/image/admincp/add.gif" style="vertical-align:middle" />'
+    obj.innerHTML = $(id).style.display === 'none' ? '<img src="'+scfg_static_g+'control/img/desc.gif" alt="" style="vertical-align:middle" />' : '<img src="'+scfg_static_g+'control/img/add.gif" alt=""  style="vertical-align:middle" />'
     display(id);
 }
 
 if (IS_FRAME) {
     try {
         _attachEvent(document.documentElement, 'keydown', parent.resetEscAndF5);
-    } catch (e) {
-    }
+    } catch (e) {}
 }
 
-var multiids = new Array();
+var multiids = [];
 
 function multiupdate(obj) {
     v = obj.value;
@@ -254,7 +247,7 @@ function multiupdate(obj) {
 
 function getmultiids() {
     var ids = '', comma = '';
-    for (i in multiids) {
+    for (var i in multiids) {
         if (multiids[i] != null) {
             ids += comma + multiids[i];
             comma = ',';
@@ -267,10 +260,10 @@ function getmultiids() {
 function toggle_group(oid, obj, conf) {
     obj = obj ? obj : $('a_' + oid);
     if (!conf) {
-        var conf = {'show': '[-]', 'hide': '[+]'};
+       conf = {'show': '[-]', 'hide': '[+]'};
     }
     var obody = $(oid);
-    if (obody.style.display == 'none') {
+    if (obody.style.display === 'none') {
         obody.style.display = '';
         obj.innerHTML = conf.show;
     } else {
@@ -309,7 +302,7 @@ function srchforum() {
     var inputs = $("cpform").getElementsByTagName('input');
     for (var i = 0; i < inputs.length; i++) {
         if (inputs[i].name.match(/^name\[\d+\]$/)) {
-            if (inputs[i].value.substr(0, fname.length).toLowerCase() == fname.toLowerCase()) {
+            if (inputs[i].value.substr(0, fname.length).toLowerCase() === fname.toLowerCase()) {
                 inputs[i].parentNode.parentNode.parentNode.parentNode.style.display = '';
                 inputs[i].parentNode.parentNode.parentNode.style.background = '#eee';
                 window.scrollTo(0, fetchOffset(inputs[i]).top - 100);
@@ -336,70 +329,11 @@ function msg_yn(msg) {
     msg = msg ? msg : '提示:删除将无法恢复!你确认要删除吗?';
     var i = window.prompt(msg, '请在这里输入:yes 确认操作');
     //if(window.confirm(msg))
-    if (i == 'yes') {
+    if (i === 'yes') {
         return true;
     } else {
         return false;
     }
-}
-
-function player_tt() {
-    var uname = $('#uname').val();
-    $.ajax({
-        type: "POST",
-        url: "/cp/User/Ajax?",
-        data: "uname=" + uname + "&act=first",
-        success: function (data) {
-            //alert(data);
-            if ('a' != data) {
-                $("#uid").val(data);
-            }
-        }
-    });
-}
-
-function players() {
-    var uid = $('#uid').val();
-    $.ajax({
-        type: "POST",
-        url: "/cp/User/Ajax?",
-        data: "uid=" + uid + "&act=second",
-        success: function (data) {
-            if ('a' != data) {
-                $("#uname").val(data);
-            }
-        }
-    });
-}
-
-function get_clanid() {
-    var clan_name = $('#clan_name').val();
-    $.ajax({
-        type: "POST",
-        url: "/cp/User/Ajax?",
-        data: "clan_name=" + clan_name + "&act=third",
-        success: function (data) {
-            //alert(data);
-            if ('a' != data) {
-                $("#clan_id").val(data);
-            }
-        }
-    });
-}
-
-function get_clanname() {
-    var clan_id = $('#clan_id').val();
-    $.ajax({
-        type: "POST",
-        url: "/cp/User/Ajax?",
-        data: "clan_id=" + clan_id + "&act=fourth",
-        success: function (data) {
-            //alert(data);
-            if ('a' != data) {
-                $("#clan_name").val(data);
-            }
-        }
-    });
 }
 
 

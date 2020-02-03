@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.login{
+  padding-right:30px;
+  width:310px;
+  height:80px;
+  background:url(./img/bg_login.gif) right 50% no-repeat;
+  &tb{
+    text-align:left;
+    margin:120px auto 0;
+    width:600px;
+  }
+  &title, &form {
+    margin:2px 0;
+    height:22px;
+    line-height:22px;
+    font-size:14px;
+  }
+  &title{
+    float:left;
+    clear:left;
+    width:60px;
+    font-weight:700;
+    color:#666;
+  }
+  &form{
+    float:left;
+    width:160px;
+    select { margin-top:1px; padding:1px; width:156px; }
+    .txt{ margin-top:1px; width:150px; }
+  }
+  &nofloat{
+    clear:both;
+    .btn{ margin-left:60px; }
+  }
+  &tips{
+    line-height:160%; margin-left:25px;
+    a{ margin:0 5px; text-decoration:underline; }
+  }
+  h1{
+    text-indent:-9999px;
+    margin:auto auto auto auto;
+    width:262px;
+    height:50%;
+    // background:url(./img/login_title.gif) no-repeat;
+  }
+  p{ line-height:150%; }
+}
+

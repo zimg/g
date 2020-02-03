@@ -1,0 +1,49 @@
+.login {
+  padding-right: 30px;
+  width: 310px;
+  height: 80px;
+  background: url(./img/bg_login.gif) right 50% no-repeat; }
+  .logintb {
+    text-align: left;
+    margin: 120px auto 0;
+    width: 600px; }
+  .logintitle, .loginform {
+    margin: 2px 0;
+    height: 22px;
+    line-height: 22px;
+    font-size: 14px; }
+  .logintitle {
+    float: left;
+    clear: left;
+    width: 60px;
+    font-weight: 700;
+    color: #666; }
+  .loginform {
+    float: left;
+    width: 160px; }
+    .loginform select {
+      margin-top: 1px;
+      padding: 1px;
+      width: 156px; }
+    .loginform .txt {
+      margin-top: 1px;
+      width: 150px; }
+  .loginnofloat {
+    clear: both; }
+    .loginnofloat .btn {
+      margin-left: 60px; }
+  .logintips {
+    line-height: 160%;
+    margin-left: 25px; }
+    .logintips a {
+      margin: 0 5px;
+      text-decoration: underline; }
+  .login h1 {
+    text-indent: -9999px;
+    margin: auto auto auto auto;
+    width: 262px;
+    height: 50%; }
+  .login p {
+    line-height: 150%; }
+
+/*# sourceMappingURL=page_login.css.map */

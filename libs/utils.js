@@ -1,0 +1,156 @@
+var $sc = $sc || {};
+define([], function (){
+    return {
+        browser: function () {
+            var u = window.navigator.userAgent.toLowerCase(),
+                app = window.navigator.appVersion,
+                language = (window.navigator.browserLanguage || window.navigator.language).toLowerCase();
+            return {         //移动终端浏览器版本信息
+                u:u,
+                trident: u.indexOf('trident') > -1, //IE内核
+                presto: u.indexOf('presto') > -1, //opera内核
+                webkit: u.indexOf('applewebkit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('gecko') > -1 && u.indexOf('khtml') === -1, //火狐内核
+                mobile: !!u.match(/applewebkit.*mobile.*/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( u;)? cpu.+mac os x/), //ios终端
+                android: u.indexOf('android') > -1 || u.indexOf('linux') > -1, //android终端或uc浏览器
+                iphone: u.indexOf('iphone') > -1, //是否为iPhone或者QQHD浏览器
+                ipad: u.indexOf('ipad') > -1, //是否iPad
+                webapp: u.indexOf('safari') === -1, //是否web应该程序，没有头部与底部
+                juc: u.indexOf('ucweb') > -1 || u.indexOf('juc') > -1 || u.indexOf('rv:1.2.3.4') > -1 || u.indexOf('firefox/1.') > -1,
+                language: language,
+                is_ios_android: !!(u.match(/(iphone|ipod|android|ios|ipad)/i)),
+                is_qq: !!u.match(/qq/i) === 'qq',
+                is_alipay: !!u.match(/alipay/i) === 'alipay',
+                is_wechat: !!u.match(/micromessenger/i) === 'micromessenger'
+            };
+        }(),
+        // web版在pc版 显示
+        mobile_show_css:function(){
+            var dom = document.getElementsByTagName('html')[0],
+                pgw = dom.offsetWidth,em = (pgw > 640)?20:pgw/32,
+                css = document.createElement('style');
+            css.type="text/css";
+            css.innerHTML = "html {font-size:"+em+"px}";
+            document.getElementsByTagName('head')[0].appendChild(css);
+            window.em_basic = em;
+        },
+
+        // uaredirect
+        uaredirect: function (mobile_url) {
+            try {
+                if (document.getElementById("bdmark") != null) {
+                    return;
+                }
+                var url_hash = window.location.hash;
+                if (!url_hash.match("fromapp")) {
+                    //  alert([this.browser.is_ios_android,this.browser.u]);
+                    if (this.browser.is_ios_android) {
+                        window.location.replace(mobile_url);
+                    }
+                }
+            } catch (err) {}
+        },
+        // adwrite
+        aw: function (mode, size) {
+            var str = 'name:' + mode + (size ? ' size:' + size : '');
+            if ($__m_g_com && $__m_g_com[mode]) {
+                str = $__m_g_com[mode];
+            }else{
+                var wh = size.split('*');
+                var w  = wh[0];
+                var h  = wh[1];
+                str = '<div style="width:'+w+'px;height:'+h+'px;overflow:hidden;margin:auto;border:1px #f60 dashed;padding:20px 10px;text-align:center;">'+str+'</div>'
+            }
+            document.write(str);
+        },
+        search: function (obj, input, len) {
+            input = input || 'q';
+            len = len || 2;
+            if (obj && obj[input]) {
+                return !!(obj && obj[input] && obj[input].value && obj[input].value.length && obj[input].value.length > len);
+            }
+            return false;
+        },
+
+        // 回到顶部
+        gotop: function (id) {
+            id = id || "index-scroll";
+            var c = document.getElementById(id);
+            var isie6 = (!(window && window.XMLHttpRequest));
+            var top_onscroll = function () {
+                var a = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                if (a > 0) {
+                    if (isie6) {
+                        c.style.display = "none";
+                        clearTimeout(window.show);
+                        window.show = setTimeout(function () {
+                            var d = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                            if (d > 0) {
+                                c.style.display = "block";
+                                c.style.top = (400 + d) + "px"
+                            }
+                        }, 320);
+                    } else {
+                        c.style.display = "block";
+                    }
+                } else {
+                    c.style.display = "none";
+                }
+            };
+            var top_onload = function () {
+                if (isie6) {
+                    c.style.position = "absolute";
+                }
+                window.onscroll = top_onscroll;
+                top_onscroll();
+            };
+            if (window.attachEvent) {
+                window.attachEvent("onload", top_onload);
+            } else {
+                window.addEventListener("load", top_onload, false);
+            }
+            document.getElementById(id).onclick = function () {
+                window.scrollTo(0, 0);
+            };
+        },
+
+        // go_mobile
+        eve_gomobile: function () {
+            if (typeof $sc != "undefined" && $sc['canonical_wap']) {
+                this.uaredirect($sc.canonical_wap);
+            }
+        },
+        // 百度提交
+        eve_pushbaidu: function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        },
+        // 统计
+        eve_stat: function () {
+            // 百度统计
+            if (typeof $sc != "undefined" && $sc['stat'] && $sc['stat']['baidu']) {
+                var _hmt = _hmt || [];
+                (function () {
+                    var hm = document.createElement("script");
+                    hm.src = "https://hm.baidu.com/hm.js?" + $sc['stat']['baidu'];
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(hm, s);
+                })();
+            }
+            // cnzz
+            if (typeof $sc != "undefined" && $sc['stat'] && $sc['stat']['cnzz']) {
+                var cnzz_protocol = (("https:" === document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_" + $sc['stat']['cnzz'] + "'%3E%3C/span%3E%3Cscript src='" +
+                    cnzz_protocol + "s11.cnzz.com/stat.php%3Fid%3D" + $sc['stat']['cnzz'] + "' type='text/javascript'%3E%3C/script%3E"));
+            }
+        }
+    }
+});
