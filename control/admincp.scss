@@ -620,9 +620,16 @@ li.popupmenu_popup { list-style: none; }
 .cmlist{
   clear:left;
   overflow-y:auto;
-  a{ display: block; float: left; overflow: hidden; width: 150px; height: 20px; color:#666; }
+  a{
+    display: block;
+    float: left;
+    overflow: hidden;
+  //  width: 150px;
+    height: 20px;
+    color:#666;
+  }
   td { padding: 5px 0; border-bottom: 1px dotted #DEEFFB; }
-  tr:last-child td { border-bottom: none; }
+  // tr:last-child td { border-bottom: none; }
   h4{ color:#09C; width: 90px; }
 }
 .cside{

@@ -904,11 +904,11 @@ function showMenu(v) {
 		} catch (e) { }
 	}
 
-	if (evt == 'click' && in_array(menuid, JSMENU['active'][layer]) && mtype != 'win') {
+	if (evt === 'click' && in_array(menuid, JSMENU['active'][layer]) && mtype !== 'win') {
 		hideMenu(menuid, mtype);
 		return;
 	}
-	if (mtype == 'menu') {
+	if (mtype === 'menu') {
 		hideMenu(layer, mtype);
 	}
 
@@ -931,7 +931,7 @@ function showMenu(v) {
 			ctrlObj.onmouseover = function (e) {
 				doane(e);
 				if (this.overfunc) this.overfunc();
-				if (evt == 'click') {
+				if (evt === 'click') {
 					clearTimeout(JSMENU['timer'][menuid]);
 					JSMENU['timer'][menuid] = null;
 				} else {
@@ -965,7 +965,7 @@ function showMenu(v) {
 					JSMENU['timer'][menuid] = null;
 				};
 			}
-			if (duration != 1) {
+			if (duration !== 1) {
 				menuObj.onmouseout = function () {
 					JSMENU['timer'][menuid] = setTimeout(function () {
 						hideMenu(menuid, mtype);
@@ -1022,7 +1022,7 @@ function showMenu(v) {
 		menuObj.setAttribute('ctrlid', ctrlid);
 		menuObj.setAttribute('ctrlclass', ctrlclass);
 	}
-	if (pos != '*') {
+	if (pos !== '*') {
 		setMenuPosition(showid, menuid, pos);
 	}
 	if (BROWSER.ie && BROWSER.ie < 7 && winhandlekey && $('fwin_' + winhandlekey)) {
@@ -1164,7 +1164,7 @@ function setMenuPosition(showid, menuid, pos) {
 			ml = bpl - mw;
 			if (in_array(basePoint, [2, 3])) {
 				ml -= sw;
-			} else if (basePoint == 4) {
+			} else if (basePoint === 4) {
 				ml += sw;
 			}
 		}
@@ -1176,17 +1176,17 @@ function setMenuPosition(showid, menuid, pos) {
 			if (in_array(basePoint, [3, 4])) mt -= sh;
 		}
 	}
-	if (pos.substr(0, 3) == '210') {
+	if (pos.substr(0, 3) === '210') {
 		ml += 69 - sw / 2;
 		mt -= 5;
-		if (showObj.tagName == 'TEXTAREA') {
+		if (showObj.tagName === 'TEXTAREA') {
 			ml -= sw / 2;
 			mt += sh / 2;
 		}
 	}
-	if (direction == 0 || menuObj.scrolly) {
+	if (direction === 0 || menuObj.scrolly) {
 		if (BROWSER.ie && BROWSER.ie < 7) {
-			if (direction == 0) mt += scrollTop;
+			if (direction === 0) mt += scrollTop;
 		} else {
 			if (menuObj.scrolly) mt -= scrollTop;
 			menuObj.style.position = 'fixed';
@@ -1194,7 +1194,7 @@ function setMenuPosition(showid, menuid, pos) {
 	}
 	if (ml) menuObj.style.left = ml + 'px';
 	if (mt) menuObj.style.top = mt + 'px';
-	if (direction == 0 && BROWSER.ie && !document.documentElement.clientHeight) {
+	if (direction === 0 && BROWSER.ie && !document.documentElement.clientHeight) {
 		menuObj.style.position = 'absolute';
 		menuObj.style.top = (document.body.clientHeight - menuObj.clientHeight) / 2 + 'px';
 	}
@@ -1206,7 +1206,7 @@ function setMenuPosition(showid, menuid, pos) {
 function hideMenu(attr, mtype) {
 	attr = isUndefined(attr) ? '' : attr;
 	mtype = isUndefined(mtype) ? 'menu' : mtype;
-	if (attr == '') {
+	if (attr === '') {
 		for (var i = 1; i <= JSMENU['layer']; i++) {
 			hideMenu(i, mtype);
 		}
@@ -1218,7 +1218,7 @@ function hideMenu(attr, mtype) {
 		return;
 	} else if (typeof attr == 'string') {
 		var menuObj = $(attr);
-		if (!menuObj || (mtype && menuObj.mtype != mtype)) return;
+		if (!menuObj || (mtype && menuObj.mtype !== mtype)) return;
 		var ctrlObj = '', ctrlclass = '';
 		if ((ctrlObj = $(menuObj.getAttribute('ctrlid'))) && (ctrlclass = menuObj.getAttribute('ctrlclass'))) {
 			var reg = new RegExp(' ' + ctrlclass);
@@ -1227,7 +1227,7 @@ function hideMenu(attr, mtype) {
 		clearTimeout(JSMENU['timer'][attr]);
 		var hide = function () {
 			if (menuObj.cache) {
-				if (menuObj.style.visibility != 'hidden') {
+				if (menuObj.style.visibility !== 'hidden') {
 					menuObj.style.display = 'none';
 					if (menuObj.cover) $(attr + '_cover').style.display = 'none';
 				}
@@ -1237,14 +1237,16 @@ function hideMenu(attr, mtype) {
 			}
 			var tmp = [];
 			for (var k in JSMENU['active'][menuObj.layer]) {
-				if (attr != JSMENU['active'][menuObj.layer][k]) tmp.push(JSMENU['active'][menuObj.layer][k]);
+				if (attr !== JSMENU['active'][menuObj.layer][k]) {
+					tmp.push(JSMENU['active'][menuObj.layer][k]);
+				}
 			}
 			JSMENU['active'][menuObj.layer] = tmp;
 		};
 		if (menuObj.fade) {
 			var O = 100;
 			var fadeOut = function (O) {
-				if (O == 0) {
+				if (O === 0) {
 					clearTimeout(fadeOutTimer);
 					hide();
 					return;

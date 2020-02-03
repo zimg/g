@@ -1,5 +1,10 @@
-define(['libs/', 'moduleB', 'moduleC'], function (moduleA, moduleB, moduleC){
+define([], function (){
 
+    /**
+     * 状态
+     * @type {number}
+     * @private
+     */
     var _check = -1;
 
     /**
@@ -7,29 +12,29 @@ define(['libs/', 'moduleB', 'moduleC'], function (moduleA, moduleB, moduleC){
      * @returns {boolean}
      */
     function check () {
-        if (this._check === false || this._check === true) {
-            return this._check;
+        if (_check === 0 || _check === 1) {
+            return _check;
         } else {
-            if ($cookie('_sp_webp') === 'ok') {
-                this._check = true;
+            if ($utils.cookie('_sp_webp') === 'ok') {
+                _check = 1;
             } else {
                 try {
-                    this._check = (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0);
-                    $cookie('_sp_webp', 'ok');
+                    _check = (document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0)?1:0;
+                    $utils.cookie('_sp_webp', 'ok');
                 } catch (err) {
-                    this._check = false;
+                    _check = 0;
                 }
             }
-            return this._check;
+            return _check;
         }
     }
 
 
     /**
      * 全站 对不支持的 图片src进行替换
-     * */
+     */
     function replace() {
-        if (!this.check()) {
+        if ( 0 === check()) {
             $('img').each(function () {
                 var src = $(this).attr('src');
                 if (typeof src != 'undefined') {
@@ -51,19 +56,17 @@ define(['libs/', 'moduleB', 'moduleC'], function (moduleA, moduleB, moduleC){
      */
     function src2jpg(url) {
         try {
-            if (!this.check()) {
+            if ( 0 === check() ) {
                 return url.replace(/(\!.*)w$/, '$1');
             } else {
                 return url;
             }
-        } catch (err) {
-            return url;
-        }
+        } catch (err) { return url; }
     }
 
     return {
         // $webp
-        eve_webp: function () {
+        webp: function () {
             if (typeof replace  == "undefined" && typeof replace  == "function") {
                 replace();
             }

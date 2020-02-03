@@ -1173,14 +1173,11 @@ li.popupmenu_popup {
     display: block;
     float: left;
     overflow: hidden;
-    width: 150px;
     height: 20px;
     color: #666; }
   .cmlist td {
     padding: 5px 0;
     border-bottom: 1px dotted #DEEFFB; }
-  .cmlist tr:last-child td {
-    border-bottom: none; }
   .cmlist h4 {
     color: #09C;
     width: 90px; }
