@@ -125,7 +125,10 @@ var $utils = {
         return false;
     },
 
-    // 回到顶部
+    /**
+     * 回到顶部
+     * @param id
+     */
     gotop: function (id) {
         id = id || "index-scroll";
         var c = document.getElementById(id);

@@ -30,9 +30,7 @@ define([], function (){
     }
 
 
-    /**
-     * 全站 对不支持的 图片src进行替换
-     */
+    /** 全站 对不支持的 图片src进行替换 */
     function replace() {
         if ( 0 === check()) {
             $('img').each(function () {
