@@ -1,47 +1,45 @@
 var cal;
-var isFocus=false; //是否为焦点
+var isFocus = false; //是否为焦点
 //function SelectDate(obj,strFormat) //两个参数改为只传一个
 function SelectDate(obj) {
     var date = new Date();
-    var by = date.getFullYear()-10; //最小值 → 10 年前
-    var ey = date.getFullYear()+10; //最大值 → 10 年后
-    cal = (cal==null) ? new Calendar(by, ey, 0) : cal;    //初始化为中文版，1为英文版
+    var by = date.getFullYear() - 10; //最小值 → 10 年前
+    var ey = date.getFullYear() + 10; //最大值 → 10 年后
+    cal = (cal == null) ? new Calendar(by, ey, 0) : cal;    //初始化为中文版，1为英文版
     //cal.dateFormatStyle = strFormat; // 默认显示格式为:yyyy-MM-dd ,还可显示 yyyy/MM/dd
     cal.show(obj);
 }
 
 /* 返回日期 */
-String.prototype.toDate = function(style)
-{
-    var y = this.substring(style.indexOf('y'),style.lastIndexOf('y')+1);//年
-    var m = this.substring(style.indexOf('M'),style.lastIndexOf('M')+1);//月
-    var d = this.substring(style.indexOf('d'),style.lastIndexOf('d')+1);//日
-    if(isNaN(y)) y = new Date().getFullYear();
-    if(isNaN(m)) m = new Date().getMonth();
-    if(isNaN(d)) d = new Date().getDate();
-    var dt ;
-    eval ("dt = new Date('"+ y+"', '"+(m-1)+"','"+ d +"')");
+String.prototype.toDate = function (style) {
+    var y = this.substring(style.indexOf('y'), style.lastIndexOf('y') + 1);//年
+    var m = this.substring(style.indexOf('M'), style.lastIndexOf('M') + 1);//月
+    var d = this.substring(style.indexOf('d'), style.lastIndexOf('d') + 1);//日
+    if (isNaN(y)) y = new Date().getFullYear();
+    if (isNaN(m)) m = new Date().getMonth();
+    if (isNaN(d)) d = new Date().getDate();
+    var dt;
+    eval("dt = new Date('" + y + "', '" + (m - 1) + "','" + d + "')");
     return dt;
 };
 
 /* 格式化日期 */
-Date.prototype.format = function(style)
-{
+Date.prototype.format = function (style) {
     var o = {
-        "M+" : this.getMonth() + 1, //month
-        "d+" : this.getDate(),      //day
-        "h+" : this.getHours(),     //hour
-        "m+" : this.getMinutes(),   //minute
-        "s+" : this.getSeconds(),   //second
-        "w+" : "天一二三四五六".charAt(this.getDay()),   //week
-        "q+" : Math.floor((this.getMonth() + 3) / 3), //quarter
-        "S" : this.getMilliseconds() //millisecond
+        "M+": this.getMonth() + 1, //month
+        "d+": this.getDate(),      //day
+        "h+": this.getHours(),     //hour
+        "m+": this.getMinutes(),   //minute
+        "s+": this.getSeconds(),   //second
+        "w+": "天一二三四五六".charAt(this.getDay()),   //week
+        "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+        "S": this.getMilliseconds() //millisecond
     };
-    if(/(y+)/.test(style)) {
+    if (/(y+)/.test(style)) {
         style = style.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
-    for(var k in o) {
-        if(new RegExp("("+ k +")").test(style)) {
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(style)) {
             style = style.replace(RegExp.$1, RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
         }
     }
@@ -49,14 +47,13 @@ Date.prototype.format = function(style)
 };
 
 /**
-* 日历类
-* @param   beginYear 1990
-* @param   endYear   2010
-* @param   lang      0(中文)|1(英语) 可自由扩充
-* @param   dateFormatStyle "yyyy-MM-dd";
-*/
-function Calendar(beginYear, endYear, lang, dateFormatStyle)
-{
+ * 日历类
+ * @param   beginYear 1990
+ * @param   endYear   2010
+ * @param   lang      0(中文)|1(英语) 可自由扩充
+ * @param   dateFormatStyle "yyyy-MM-dd";
+ */
+function Calendar(beginYear, endYear, lang, dateFormatStyle) {
     this.beginYear = 1990;
     this.endYear = 2010;
     this.lang = 0;            //0(中文) | 1(英文)
@@ -85,19 +82,19 @@ function Calendar(beginYear, endYear, lang, dateFormatStyle)
 
 
     this.colors = {
-        "cur_word"      : "#FFFFFF", //当日日期文字颜色
-        "cur_bg"        : "#83A6F4", //当日日期单元格背影色
-        "sel_bg"        : "#FFCCCC", //已被选择的日期单元格背影色
-        "sun_word"      : "#FF0000", //星期天文字颜色
-        "sat_word"      : "#0000FF", //星期六文字颜色
-        "td_word_light" : "#333333", //单元格文字颜色
-        "td_word_dark" : "#CCCCCC", //单元格文字暗色
-        "td_bg_out"     : "#EFEFEF", //单元格背影色
-        "td_bg_over"    : "#FFCC00", //单元格背影色
-        "tr_word"       : "#FFFFFF", //日历头文字颜色
-        "tr_bg"         : "#666666", //日历头背影色
-        "input_border" : "#CCCCCC", //input控件的边框颜色
-        "input_bg"      : "#EFEFEF"   //input控件的背影色
+        "cur_word": "#FFFFFF", //当日日期文字颜色
+        "cur_bg": "#83A6F4", //当日日期单元格背影色
+        "sel_bg": "#FFCCCC", //已被选择的日期单元格背影色
+        "sun_word": "#FF0000", //星期天文字颜色
+        "sat_word": "#0000FF", //星期六文字颜色
+        "td_word_light": "#333333", //单元格文字颜色
+        "td_word_dark": "#CCCCCC", //单元格文字暗色
+        "td_bg_out": "#EFEFEF", //单元格背影色
+        "td_bg_over": "#FFCC00", //单元格背影色
+        "tr_word": "#FFFFFF", //日历头文字颜色
+        "tr_bg": "#666666", //日历头背影色
+        "input_border": "#CCCCCC", //input控件的边框颜色
+        "input_bg": "#EFEFEF"   //input控件的背影色
     };
 
     this.draw();
@@ -111,21 +108,21 @@ function Calendar(beginYear, endYear, lang, dateFormatStyle)
  * 日历类属性（语言包，可自由扩展）
  */
 Calendar.language = {
-    "year"   : [[""], [""]],
-    "months" : [
-        ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
-        ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+    "year": [[""], [""]],
+    "months": [
+        ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
     ],
-    "weeks" : [
-        ["日","一","二","三","四","五","六"],
-        ["SUN","MON","TUR","WED","THU","FRI","SAT"]
+    "weeks": [
+        ["日", "一", "二", "三", "四", "五", "六"],
+        ["SUN", "MON", "TUR", "WED", "THU", "FRI", "SAT"]
     ],
-    "clear" : [["清空"], ["CLS"]],
-    "today" : [["今天"], ["TODAY"]],
-    "close" : [["关闭"], ["CLOSE"]]
+    "clear": [["清空"], ["CLS"]],
+    "today": [["今天"], ["TODAY"]],
+    "close": [["关闭"], ["CLOSE"]]
 };
 
-Calendar.prototype.draw = function() {
+Calendar.prototype.draw = function () {
     calendar = this;
     var i = 0;
     var mvAry = [];
@@ -139,16 +136,16 @@ Calendar.prototype.draw = function() {
     mvAry[mvAry.length] = '    </table>';
     mvAry[mvAry.length] = '    <table id="calendarTable" width="100%" style="border:0px solid #CCCCCC;background-color:#FFFFFF" border="0" cellpadding="3" cellspacing="1">';
     mvAry[mvAry.length] = '      <tr>';
-    for(i = 0; i < 7; i++) {
+    for (i = 0; i < 7; i++) {
         mvAry[mvAry.length] = '      <th style="font-weight:normal;background-color:' + calendar.colors["tr_bg"] + ';color:' + calendar.colors["tr_word"] + ';">' + Calendar.language["weeks"][this.lang][i] + '</th>';
     }
     mvAry[mvAry.length] = '      </tr>';
-    for(i = 0; i < 6;i++) {
+    for (i = 0; i < 6; i++) {
         mvAry[mvAry.length] = '    <tr align="center">';
-        for(var j = 0; j < 7; j++) {
+        for (var j = 0; j < 7; j++) {
             if (j === 0) {
                 mvAry[mvAry.length] = ' <td style="cursor:default;color:' + calendar.colors["sun_word"] + ';"></td>';
-            } else if(j === 6) {
+            } else if (j === 6) {
                 mvAry[mvAry.length] = ' <td style="cursor:default;color:' + calendar.colors["sat_word"] + ';"></td>';
             } else {
                 mvAry[mvAry.length] = ' <td style="cursor:default;"></td>';
@@ -166,32 +163,53 @@ Calendar.prototype.draw = function() {
     this.panel.innerHTML = mvAry.join("");
 
     var obj = this.getElementById("prevMonth");
-    obj.onclick = function (){calendar.goPrevMonth(calendar);};
-    obj.onblur = function (){calendar.onblur();};
-    this.prevMonth= obj;
+    obj.onclick = function () {
+        calendar.goPrevMonth(calendar);
+    };
+    obj.onblur = function () {
+        calendar.onblur();
+    };
+    this.prevMonth = obj;
 
     obj = this.getElementById("nextMonth");
-    obj.onclick = function (){calendar.goNextMonth(calendar);};
-    obj.onblur = function (){calendar.onblur();};
-    this.nextMonth= obj;
+    obj.onclick = function () {
+        calendar.goNextMonth(calendar);
+    };
+    obj.onblur = function () {
+        calendar.onblur();
+    };
+    this.nextMonth = obj;
 
     obj = this.getElementById("calendarClear");
-    obj.onclick = function (){calendar.dateControl.value = "";calendar.hide();};
+    obj.onclick = function () {
+        calendar.dateControl.value = "";
+        calendar.hide();
+    };
     this.calendarClear = obj;
 
     obj = this.getElementById("calendarClose");
-    obj.onclick = function (){calendar.hide();};
+    obj.onclick = function () {
+        calendar.hide();
+    };
     this.calendarClose = obj;
 
     obj = this.getElementById("calendarYear");
-    obj.onchange = function (){calendar.update(calendar);};
-    obj.onblur = function (){calendar.onblur();};
+    obj.onchange = function () {
+        calendar.update(calendar);
+    };
+    obj.onblur = function () {
+        calendar.onblur();
+    };
     this.calendarYear = obj;
 
     obj = this.getElementById("calendarMonth");
-    with(obj) {
-        onchange = function (){calendar.update(calendar);};
-        onblur = function (){calendar.onblur();}
+    with (obj) {
+        onchange = function () {
+            calendar.update(calendar);
+        };
+        onblur = function () {
+            calendar.onblur();
+        }
     }
     this.calendarMonth = obj;
 
@@ -210,7 +228,7 @@ Calendar.prototype.draw = function() {
 };
 
 /* 年份下拉框绑定数据 */
-Calendar.prototype.bindYear = function() {
+Calendar.prototype.bindYear = function () {
     var cy = this.calendarYear;
     cy.length = 0;
     for (var i = this.beginYear; i <= this.endYear; i++) {
@@ -219,16 +237,16 @@ Calendar.prototype.bindYear = function() {
 };
 
 /* 月份下拉框绑定数据 */
-Calendar.prototype.bindMonth = function() {
+Calendar.prototype.bindMonth = function () {
     var cm = this.calendarMonth;
-        cm.length = 0;
+    cm.length = 0;
     for (var i = 0; i < 12; i++) {
         cm.options[cm.length] = new Option(Calendar.language["months"][this.lang][i], i);
     }
 };
 
 /* 向前一月 */
-Calendar.prototype.goPrevMonth = function(e) {
+Calendar.prototype.goPrevMonth = function (e) {
     if (this.year === this.beginYear && this.month === 0) {
         return;
     }
@@ -243,9 +261,8 @@ Calendar.prototype.goPrevMonth = function(e) {
 };
 
 /* 向后一月 */
-Calendar.prototype.goNextMonth = function(e)
-{
-    if (this.year === this.endYear && this.month === 11){
+Calendar.prototype.goNextMonth = function (e) {
+    if (this.year === this.endYear && this.month === 11) {
         return;
     }
     this.month++;
@@ -259,15 +276,15 @@ Calendar.prototype.goNextMonth = function(e)
 };
 
 /* 改变SELECT选中状态 */
-Calendar.prototype.changeSelect = function() {
+Calendar.prototype.changeSelect = function () {
     var i, cy = this.calendarYear, cm = this.calendarMonth;
-    for (i= 0; i < cy.length; i++) {
+    for (i = 0; i < cy.length; i++) {
         if (cy.options[i].value === this.date.getFullYear()) {
             cy[i].selected = true;
             break;
         }
     }
-    for (i= 0; i < cm.length; i++) {
+    for (i = 0; i < cm.length; i++) {
         if (cm.options[i].value === this.date.getMonth()) {
             cm[i].selected = true;
             break;
@@ -289,12 +306,18 @@ Calendar.prototype.bindData = function () {
     var calendar = this;
     var dateArray = this.getMonthViewArray(this.date.getFullYear(), this.date.getMonth());
     var tds = this.getElementById("calendarTable").getElementsByTagName("td");
-    for(var i = 0; i < tds.length; i++) {
+    for (var i = 0; i < tds.length; i++) {
         tds[i].style.backgroundColor = calendar.colors["td_bg_out"];
-        tds[i].onclick      = function () {return;};
-        tds[i].onmouseover  = function () {return;};
-        tds[i].onmouseout   = function () {return;};
-        if (i > dateArray.length - 1){
+        tds[i].onclick = function () {
+            return;
+        };
+        tds[i].onmouseover = function () {
+            return;
+        };
+        tds[i].onmouseout = function () {
+            return;
+        };
+        if (i > dateArray.length - 1) {
             break;
         }
         tds[i].innerHTML = dateArray[i];
@@ -341,7 +364,7 @@ Calendar.prototype.getMonthViewArray = function (y, m) {
     var i;
     var mvArray = [];
     var dayOfFirstDay = new Date(y, m, 1).getDay();
-    var daysOfMonth   = new Date(y, m + 1, 0).getDate();
+    var daysOfMonth = new Date(y, m + 1, 0).getDate();
     for (i = 0; i < 42; i++) {
         mvArray[i] = "&nbsp;";
     }
@@ -352,8 +375,8 @@ Calendar.prototype.getMonthViewArray = function (y, m) {
 };
 
 /* 扩展 document.getElementById(id) 多浏览器兼容性 from meizz tree source */
-Calendar.prototype.getElementById = function(id) {
-    if (typeof(id) != "string" || id === "") {
+Calendar.prototype.getElementById = function (id) {
+    if (typeof (id) != "string" || id === "") {
         return null;
     }
     if (document.getElementById) {
@@ -364,13 +387,13 @@ Calendar.prototype.getElementById = function(id) {
     }
     try {
         return eval(id);
-    } catch(e){
+    } catch (e) {
         return null;
     }
 };
 
 /* 扩展 object.getElementsByTagName(tagName) */
-Calendar.prototype.getElementsByTagName = function(object, tagName) {
+Calendar.prototype.getElementsByTagName = function (object, tagName) {
     if (document.getElementsByTagName) {
         return document.getElementsByTagName(tagName);
     }
@@ -383,7 +406,7 @@ Calendar.prototype.getElementsByTagName = function(object, tagName) {
 Calendar.prototype.getAbsPoint = function (e) {
     var x = e.offsetLeft;
     var y = e.offsetTop;
-    while(e = e.offsetParent) {
+    while (e = e.offsetParent) {
         x += e.offsetLeft;
         y += e.offsetTop;
     }
@@ -397,42 +420,49 @@ Calendar.prototype.show = function (dateObj, popControl) {
     }
     this.dateControl = dateObj;
 
-    this.date  = (dateObj.value.length > 0) ? new Date(dateObj.value.toDate(this.dateFormatStyle)) : new Date() ;//若为空则显示当前月份
-    this.year  = this.date.getFullYear();
+    this.date = (dateObj.value.length > 0) ? new Date(dateObj.value.toDate(this.dateFormatStyle)) : new Date();//若为空则显示当前月份
+    this.year = this.date.getFullYear();
     this.month = this.date.getMonth();
     this.changeSelect();
     this.bindData();
     if (popControl == null) {
         popControl = dateObj;
     }
-    var xy                = this.getAbsPoint(popControl);
-    this.panel.style.left = xy.x -25 + "px";
-    this.panel.style.top  = (xy.y + dateObj.offsetHeight) + "px";
+    var xy = this.getAbsPoint(popControl);
+    this.panel.style.left = xy.x - 25 + "px";
+    this.panel.style.top = (xy.y + dateObj.offsetHeight) + "px";
 
-    this.panel.style.display     = "";
+    this.panel.style.display = "";
     this.container.style.display = "";
 
-    dateObj.onblur               = function(){calendar.onblur();};
-    this.container.onmouseover   = function(){isFocus=true;};
-    this.container.onmouseout    = function(){isFocus=false;}
+    dateObj.onblur = function () {
+        calendar.onblur();
+    };
+    this.container.onmouseover = function () {
+        isFocus = true;
+    };
+    this.container.onmouseout = function () {
+        isFocus = false;
+    }
 };
 
 /* 隐藏日历 */
-Calendar.prototype.hide = function() {
-    this.panel.style.display     = "none";
+Calendar.prototype.hide = function () {
+    this.panel.style.display = "none";
     this.container.style.display = "none";
-    isFocus=false;
+    isFocus = false;
 };
 
 /* 焦点转移时隐藏日历 */
-Calendar.prototype.onblur = function() {
-    if(!isFocus){this.hide();}
+Calendar.prototype.onblur = function () {
+    if (!isFocus) {
+        this.hide();
+    }
 };
 
 document.write('<div id="ContainerPanel" style="display:none;"><div id="calendarPanel" style="position: absolute;display: none;z-index: 9999;');
 document.write('background-color: #FFFFFF;border: 1px solid #CCCCCC;width:175px;font-size:12px;margin-left:25px;"></div>');
-if(document.all)
-{
+if (document.all) {
     document.write('<iframe style="position:absolute;z-index:2000;width:expression(this.previousSibling.offsetWidth);');
     document.write('height:expression(this.previousSibling.offsetHeight);');
     document.write('left:expression(this.previousSibling.offsetLeft);top:expression(this.previousSibling.offsetTop);');

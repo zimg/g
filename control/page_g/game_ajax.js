@@ -1,7 +1,7 @@
 //
 define([], function () {
     return {
-        player_tt:function() {
+        player_tt: function () {
             var uname = $('#uname').val();
             $.ajax({
                 type: "POST",
@@ -15,7 +15,7 @@ define([], function () {
                 }
             });
         },
-        players:function () {
+        players: function () {
             var uid = $('#uid').val();
             $.ajax({
                 type: "POST",
@@ -29,7 +29,7 @@ define([], function () {
             });
         },
 
-        clanid:function () {
+        clanid: function () {
             var clan_name = $('#clan_name').val();
             $.ajax({
                 type: "POST",
@@ -44,7 +44,7 @@ define([], function () {
             });
         },
 
-        clanname:function () {
+        clanname: function () {
             var clan_id = $('#clan_id').val();
             $.ajax({
                 type: "POST",

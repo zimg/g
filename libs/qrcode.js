@@ -17,7 +17,7 @@ define([], function () {
             document.write('<style type="text/css">#qrocdeContainer{position: fixed;z-index: 999;bottom: 0;left: 0;}#qrcodeMessage{background:#fff;width:' + config.width + 'px;padding:8px;text-align:center;float:right;}@media screen and (max-width: ' + config.maxScreen + 'px) {#qrocdeContainer{display:none;}}</style>');
             document.write('<div id="qrocdeContainer"><div id="qrcodeMessage"><div id="qrcode"></div><div>' + config.message + '</div></div></div>');
             window.jQuery(config.id).qrcode({
-                width : config.width,
+                width: config.width,
                 height: config.height,
                 correctLevel: 0,
                 text: mobile_url2
@@ -29,7 +29,8 @@ define([], function () {
             if (typeof this.qrcode != "undefined" && this.qrcode) {
                 try {
                     this.qrcode({width: 120, height: 120});
-                } catch (e) {}
+                } catch (e) {
+                }
             }
         }
     }

@@ -56,7 +56,7 @@ var $utils = {
         var u = window.navigator.userAgent.toLowerCase(),
             app = window.navigator.appVersion,
             language = (window.navigator.browserLanguage || window.navigator.language).toLowerCase();
-        return {         //移动终端浏览器版本信息
+        return {         // 移动终端浏览器版本信息
             u:u,
             trident: u.indexOf('trident') > -1, //IE内核
             presto: u.indexOf('presto') > -1, //opera内核
