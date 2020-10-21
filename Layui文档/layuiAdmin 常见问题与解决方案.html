@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)#table-token -->
+<html data-blockbyte-bs-uid="38626"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>layuiAdmin 常见问题与解决方案</title><meta name="description" content=""><link rel="stylesheet" href="./layuiAdmin 常见问题与解决方案_files/font_24081_qs69ykjbea.css"><link rel="stylesheet" href="./layuiAdmin 常见问题与解决方案_files/layui.css"><link rel="stylesheet" href="./layuiAdmin 常见问题与解决方案_files/global.css" charset="utf-8"><link rel="stylesheet" href="./layuiAdmin 常见问题与解决方案_files/global(1).css" charset="utf-8"><link rel="stylesheet" href="./layuiAdmin 常见问题与解决方案_files/docs.css" charset="utf-8"><style>.fly-footer{border:none;}</style><script src="./layuiAdmin 常见问题与解决方案_files/hm.js.下载"></script><link id="layuicss-layer" rel="stylesheet" href="./layuiAdmin 常见问题与解决方案_files/layer.css" media="all"><style class="blockbyte-bs-style" data-name="content">body>div#blockbyte-bs-indicator>div{opacity:0;pointer-events:none}body>iframe#blockbyte-bs-sidebar.blockbyte-bs-visible,body>iframe#blockbyte-bs-overlay.blockbyte-bs-visible{opacity:1;pointer-events:auto}body.blockbyte-bs-noscroll{overflow:hidden !important}body>div#blockbyte-bs-indicator>div{position:absolute;transform:translate3d(-40px, 0, 0);top:0;left:0;width:40px !important;height:100%;background:rgba(0,0,0,0.5);border-radius:0 10px 10px 0;transition:opacity 0.3s, transform 0.3s;z-index:2}body>div#blockbyte-bs-indicator>div>span{-webkit-mask:no-repeat center/32px;-webkit-mask-image:url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);background-color:#ffffff;position:absolute;display:block;top:0;left:0;width:100%;height:100%}body>div#blockbyte-bs-indicator[data-pos='right']{left:auto;right:0}body>div#blockbyte-bs-indicator[data-pos='right']>div{transform:translate3d(40px, 0, 0);left:auto;right:0;border-radius:10px 0 0 10px}body>div#blockbyte-bs-indicator.blockbyte-bs-fullHeight>div{border-radius:0}body>div#blockbyte-bs-indicator.blockbyte-bs-hover>div{transform:translate3d(0, 0, 0);opacity:1}body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb{height:100% !important;top:0 !important}body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb>div{background:transparent}body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb>div>span{-webkit-mask-position-y:20px}body>iframe#blockbyte-bs-sidebar{width:350px;max-width:none;height:0;z-index:2147483646;background-color:rgba(0,0,0,0.6) !important;border:none;display:block !important;transform:translate3d(-350px, 0, 0);will-change:width, height, opacity, transform;transition:width 0s 0.3s, height 0s 0.3s, opacity 0.3s, transform 0.3s}body>iframe#blockbyte-bs-sidebar[data-pos='right']{left:auto;right:0;transform:translate3d(350px, 0, 0)}body>iframe#blockbyte-bs-sidebar.blockbyte-bs-visible{width:calc(100% + 350px);height:100%;transform:translate3d(0, 0, 0);transition:opacity 0.3s, transform 0.3s}body>iframe#blockbyte-bs-sidebar.blockbyte-bs-hideMask{background:none !important}body>iframe#blockbyte-bs-sidebar.blockbyte-bs-hideMask:not(.blockbyte-bs-hover){width:calc(350px + 50px)}body>iframe#blockbyte-bs-overlay{width:100%;max-width:none;height:100%;z-index:2147483647;border:none;background:rgba(0,0,0,0.5) !important;transition:opacity 0.3s}
+</style></head><body class="fly-body-docs"><div class="layui-container"> <div class="fly-docs-container"> <div class="fly-docs-info"> <span>更新：2020-4-1 17:49:43</span> <span>阅读：98984</span> </div> <h1 class="fly-docs-title">layuiAdmin 常见问题与解决方案</h1> <div class="layui-text fly-md-text" data-doc="0.002250220520477007"> <blockquote>
+<p>本文档主要收集 layuiAdmin 开发过程中的【常见问题】及其解决方案，不定期更新。</p>
+</blockquote>
+<div class="fly-md-dir">
+
+
+<ul>
+<li><a href="#cache">单页版缓存问题</a></li>
+<li><a href="#select-tpl">动态模板中的 select 使用</a></li>
+<li><a href="#reload-tpl">刷新动态模板</a></li>
+<li><a href="#table-token">设置 table 的 token</a></li>
+</ul>
+</div>
+<p><a name="cache"> </a></p>
+<h2>单页版缓存问题</h2>
+<p>由于单页面版本的视图文件和静态资源模块都是动态加载的，所以可能存在浏览器的本地缓存问题，事实上我们也考虑到这个，因此，为了避免改动后的文件未及时生效，你只需在入口页面（默认为<code>start/index.html</code>）中，找到 <code>layui.config</code> ，修改其 <code>version</code> 的值即可。</p>
+<blockquote>
+<p><strong>我们推荐你分场景来更新缓存：</strong></p>
+<ul>
+<li>场景一：如果项目是在本地开发。你可以设置 version 为动态毫秒数，如：</li>
+</ul>
+<pre><code>version: new Date().getTime() //这样你每次刷新页面，都会更新一次缓存
+</code></pre>
+<hr>
+<ul>
+<li>场景二：如果项目是在线上运行。建议你手工更新 <code>version</code>，如：</li>
+</ul>
+<pre><code>version: '1.0.0' //每次发布项目时，跟着改动下该属性值即可更新静态资源的缓存
+</code></pre>
+</blockquote>
+<p><a name="select-tpl"> </a></p>
+<h2>动态模板中的 select 正确用法</h2>
+<p>当你试图用动态模板输出 <code>&lt;select&gt;</code>元素 的 <code>&lt;option&gt;&lt;/option&gt;</code> 时，务必注意不要将动态模板结构放在 select 内部，而应该将 select 整体放在动态模板内，然后在遍历输出 option，如：</p>
+<pre><code>&lt;script type="text/html" lay-url="" template&gt;
+  &lt;select name="" lay-filter=""&gt;
+    {{# layui.each(d, function(index, item){ }}
+      &lt;option value="{{ item.value }}"&gt;{{ item.title }}&lt;/option&gt;
+    {{# }); }}
+  &lt;/select&gt;
+&lt;/script&gt;
+
+</code></pre>
+<blockquote>
+<p>由于 select 标签的特殊性，很多同学将 <code>&lt;script type="text/html" lay-url="" template&gt; &lt;/script&gt;</code> 放在了 <code>select</code> 标签的里面，导致无法正确输出相应视图，所以请务必纠正写法。</p>
+</blockquote>
+<p><a name="reload-tpl"> </a></p>
+<h2>刷新动态模板</h2>
+<blockquote>
+<p>如果需要对一个已经渲染完毕的动态模板再次进行刷新，可以借助 view 模块的 refresh 方法。方法如下：</p>
+</blockquote>
+<pre><code>&lt;script type="text/html" id="testID" template lay-url="" lay-data="" lay-done=""&gt;
+  &lt;div lay-templateid="testID"&gt;  &lt;!-- 注意：此处 lay-templateid 属性值需要与模版定义的 ID 值一致  --&gt;
+    内容放此处
+  &lt;/div&gt;
+&lt;/script&gt;
+</code></pre>
+<p>然后在需要执行模版刷新的地方执行：</p>
+<pre><code>view('testID').refresh();
+</code></pre>
+<p>即可完成刷新。</p>
+<p><a name="table-token"> </a></p>
+<h2>设置 table 的 token</h2>
+<p>尽管 <code>admin.req()</code> 方法会自动传递 token，但 layui 中涉及到接口请求的公共组件（如：table、upload）并不走 admin.req()，这时就需要你获取本地存储的 token 赋值给接口参数，方式如下：</p>
+<ul>
+<li><strong>方式一</strong>：设置单个 table 实例的 token</li>
+</ul>
+<pre><code>//设置单个 table 实例的请求 token
+table.render({
+  elem: '#xxxx'
+  ,url: 'url'
+  ,headers: { //通过 request 头传递
+    access_token: layui.data('layuiAdmin').access_token
+  }
+  ,where: { //通过参数传递
+    access_token: layui.data('layuiAdmin').access_token
+  }
+});
+</code></pre>
+<ul>
+<li><strong>方式二</strong>：设置全局 table 实例的 token（<em>推荐</em>）</li>
+</ul>
+<pre><code>//所有 table 实例均会有效，这样就不用在每个 table.render() 都设置一次 token
+table.set({
+  headers: { //通过 request 头传递
+    access_token: layui.data('layuiAdmin').access_token
+  }
+  ,where: { //通过参数传递
+    access_token: layui.data('layuiAdmin').access_token
+  }
+});
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>一般情况，结合你的实际需求，headers 和 where 二者中设置一个即可。</li>
+<li>这里 access_token 的命名对应 config.js 定义的 tokenName 的值</li>
+</ul>
+</blockquote>
+<i icon="0.00028127756249648404"></i> </div> </div></div><div id="FLY-spread-dir" class="layui-hide"> <i class="layui-icon layui-icon-spread-left"></i></div><div class="fly-footer"> <p>© 2020 <a href="https://fly.layui.com/">layui.com</a> MIT license</p> <p> <a href="https://github.com/sentsin/layui/" target="_blank" rel="nofollow">GitHub</a> <a href="https://gitee.com/sentsin/layui" target="_blank" rel="nofollow">码云</a> <a href="http://fly.layui.com/jie/2461/" target="_blank">公众号</a> <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow">赣ICP备13006272号-2</a> </p> <div class="fly-union"> <p style="display: block; margin-bottom: 10px;"><span>感谢以下平台提供云加速支持</span></p><p> <a href="https://console.upyun.com/register/?invite=SJ0wu6g2-" target="_blank" rel="nofollow" sponsor="upyun"> <img src="./layuiAdmin 常见问题与解决方案_files/upyun.png"> </a> <a href="https://www.maoyuncloud.com/?from=layui" target="_blank" rel="nofollow" sponsor="maoyun"> <img src="./layuiAdmin 常见问题与解决方案_files/168_1559291577683_9348.png"> </a> </p></div></div><script src="./layuiAdmin 常见问题与解决方案_files/layui.js.下载"></script><script>layui.cache.page ='docs';layui.cache.user ={username:'Lingger' ,uid:46671240 ,avatar:'//res.layui.com/images/fly/avatar/1.jpg' ,experience:2635 ,sum:2600 ,vip:4 ,sex:''};layui.config({version:"1594605837733"}).extend({'fly':'//res.layui.com/static/lay/modules/fly/index'}).use('fly');</script> <script>var _hmt =_hmt ||[];(function() {var hm =document.createElement("script");hm.src ="https://hm.baidu.com/hm.js?d214947968792b839fd669a4decaaffc";var s =document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script><iframe id="blockbyte-bs-sidebar" class="notranslate" data-pos="right" src="./layuiAdmin 常见问题与解决方案_files/saved_resource.html"></iframe><div id="blockbyte-bs-indicator" class="blockbyte-bs-fullHeight" style="width: 21px; height: 100%; top: 0%;"></div><ul class="layui-fixbar"><li class="layui-icon layui-fixbar-top" lay-type="top" style="display: none;"></li></ul></body></html>
