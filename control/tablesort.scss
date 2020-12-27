@@ -1,0 +1,64 @@
+
+table{
+    &.p_table_order {
+        font-family: arial, serif;
+        /* background-color: #F6FBFF; */
+        margin: 5px 0 15px;
+        text-align: center;
+        font-size: 12px;
+        display: inline-table;
+        border-collapse: collapse;
+        cellpadding: 0;
+        cellspacing: 0;
+
+        thead , tfoot {
+            tr {
+                td {
+                    /* background-color: #e6EEEE; */
+                    border: 1px solid #DDDDDD;
+                    font-size: 12px;
+                    padding: 4px;
+                }
+                th {
+                    background-color: #e6EEEE;
+                    border: 1px solid #DDDDDD;
+                    font-size: 12px;
+                    padding: 4px;
+                    text-align: center;
+                }
+            }
+        }
+        thead tr {
+            .header {
+                background-image: url(img/icon_mot.gif);
+                background-repeat: no-repeat;
+                background-position: center right;
+                cursor: pointer;
+            }
+            .headerSortUp {
+                background-image: url(img/icon_asc.gif);
+                background-color: #8dbdd8;
+            }
+            .headerSortDown {
+                background-image: url(img/icon_desc.gif);
+                background-color: #8dbdd8;
+            }
+        }
+        tbody td {
+            color: #3D3D3D;
+            padding: 4px;
+            border: 1px solid #DDDDDD;
+            /*background-color: #FFF;*/
+            text-align: center;
+            vertical-align: top;
+        }
+        tbody tr.odd td {
+            /*background-color:#F0F0F6;*/
+            text-align: center;
+        }
+    }
+}
+
+.blue {
+    background: #bcd4ec;
+}

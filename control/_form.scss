@@ -1,0 +1,197 @@
+/* form */
+textarea, input, select, .html {
+  padding: 2px;
+  border: 1px solid;
+  border-color: #666 #ccc #ccc #666;
+  background: #F9F9F9;
+  color: #333;
+  resize: none;
+}
+
+.txt, select, .vmiddle {
+  vertical-align: middle;
+}
+
+.txt:hover, .txt:focus, textarea:hover, textarea:focus {
+  border-color: #09C;
+  background: #F5F9FD;
+}
+
+.hover:hover {
+  background: #F5F9FD;
+}
+
+.hover:hover .addchildboard, .hover:hover .deleterow {
+  color: #F5F9FD;
+}
+
+.txtnobd {
+  border: 1px solid #FFF;
+  background: #FFF;
+  cursor: pointer;
+}
+
+.radio, .checkbox, .pr, .pc {
+  border: none;
+  background: none;
+  vertical-align: middle;
+}
+
+.checkbox {
+  height: 14px;
+}
+
+.btn {
+  margin: 3px 0;
+  padding: 2px 5px;
+  *padding: 4px 5px 1px;
+  border: 1px solid;
+  border-color: #ddd #666 #666 #ddd;
+  background: #DDD;
+  color: #000;
+  cursor: pointer;
+  vertical-align: middle;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &_big {
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: url(./img/btn_big.png) no-repeat 0 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFF;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.uploadbtn {
+  width: 250px;
+  border-color: #999;
+}
+
+.line {
+  border-bottom: 1px solid #0F0;
+}
+
+.num {
+  width: 20px !important;
+  height: 16px;
+  vertical-align: middle;
+}
+
+/* simulate input type="file" */
+.filebtn {
+  position: relative;
+  margin-right: 30px;
+  width: 60px;
+  overflow: hidden;
+  zoom: 1;
+
+  .pf {
+    position: absolute;
+    right: 0;
+    height: 23px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+  }
+}
+
+
+/* 通用的表单样式 */
+.tfm {
+  width: 100%;
+
+  th {
+    width: 95px;
+    font-weight: 700;
+  }
+
+  caption, th, td {
+    padding: 10px 2px;
+  }
+
+  caption h2 {
+    font-size: 16px;
+  }
+
+  th .rq {
+    float: right;
+    font-size: 14px;
+  }
+
+  .pt, .px {
+    margin-right: 3px;
+    width: 282px;
+  }
+
+  .d {
+    clear: both;
+    margin: 5px 0;
+    color: #FF0000;
+
+    em {
+      margin-left: 5px;
+      color: red;
+    }
+
+    strong {
+      margin-left: 5px;
+    }
+  }
+
+  .p {
+    text-align: right;
+  }
+
+  .pcl {
+    label {
+      display: block;
+      padding: 0 2px 5px;
+    }
+
+    .pc {
+      margin-right: 5px;
+      padding: 0;
+    }
+  }
+
+  .l {
+    th, td {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .c, .tedt {
+    width: 290px;
+  }
+}
+
+.vt {
+  th, td {
+    vertical-align: top;
+  }
+}
+
+.bn {
+  .tfm {
+    caption, th, td {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    th {
+      font-weight: 400;
+    }
+  }
+}

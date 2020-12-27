@@ -1,8 +1,8 @@
 {
-  "code": 0
-  ,"msg": ""
-  ,"count": "100"
-  ,"data": [{
+    "code":0,
+    "msg":"",
+    "count":"100",
+    "data":[{
     "id": "001"
     ,"username": "用户-1"
     ,"avatar": "https://wx4.sinaimg.cn/mw1024/5db11ff4gy1fmx4keaw9pj20dw08caa4.jpg"

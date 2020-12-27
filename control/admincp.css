@@ -101,7 +101,7 @@ textarea, input, select, .html {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    background: url(../img/btn_big.png) no-repeat 0 0;
+    background: url(./img/btn_big.png) no-repeat 0 0;
     font-size: 14px;
     font-weight: 700;
     color: #FFF; }
@@ -524,7 +524,7 @@ li.popupmenu_popup {
       background: url(./img/btn_block_2.gif) no-repeat right -26px; }
     .tab1 .current a em {
       margin-left: 3px;
-      * margin-right: -5px;
+      *margin-right: -5px;
       background: url(./img/bg_repno.gif) no-repeat 0 -145px !important;
       background: url(./img/bg_repno.gif) no-repeat 0 -147px;
       color: #666; }
@@ -532,7 +532,7 @@ li.popupmenu_popup {
       color: #FF9; }
   .tab1 .hasdropmenu a em {
     margin-left: 3px;
-    * margin-right: -5px;
+    *margin-right: -5px;
     background: url(./img/bg_repno.gif) no-repeat 0 -195px !important;
     background: url(./img/bg_repno.gif) no-repeat 0 -197px;
     color: #FFF; }
@@ -1635,7 +1635,7 @@ li.popupmenu_popup {
     height: 20px;
     overflow: hidden;
     text-indent: -9999px;
-    background: url(../img/cls.gif) no-repeat 0 0; }
+    background: url(./img/cls.gif) no-repeat 0 0; }
     .flbc:hover {
       background-position: 0 -20px; }
   .flb em {
@@ -1803,7 +1803,7 @@ li.popupmenu_popup {
   margin: 10px 0;
   width: 200px;
   height: 16px;
-  background: url(../img/bg_progressbar.png) 0 0 repeat-x;
+  background: url(./img/bg_progressbar.png) 0 0 repeat-x;
   border-radius: 5px; }
   .pbg .xs0 {
     position: absolute;
@@ -1813,7 +1813,7 @@ li.popupmenu_popup {
 .pbr {
   height: 16px;
   width: 200px;
-  background-image: url(../img/bg_progressbar.png);
+  background-image: url(./img/bg_progressbar.png);
   background-color: #5AAF4A;
   background-position: 0 -16px;
   background-repeat: repeat-x;

@@ -1,0 +1,57 @@
+
+* {
+  word-wrap: break-word;
+  outline: none;
+}
+
+body {
+  background: #FFF;
+  text-align: center;
+}
+
+body, td, input, textarea, select, button {
+  color: #555;
+  font: 12px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif;
+}
+
+body, ul, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 12px;
+}
+
+em, cite, th {
+  font-style: normal;
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+}
+
+a {
+  color: #2366A8;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  img {
+    border: none;
+  }
+}
+
+
