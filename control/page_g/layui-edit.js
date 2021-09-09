@@ -9,7 +9,7 @@ layui.use('layer', function () {
                 name = othis.data('name'),
                 key_id = othis.data('key'),
                 that = this;
-            console.log([othis.data('url'), othis.attr("href")]);
+            // console.log([othis.data('url'), othis.attr("href")]);
             layer.open({
                 type: 2 //此处以iframe举例
                 , title: name, area: ['80%', '70%'], shade: 0, id: key_id, content: url, btn: ['关闭']
