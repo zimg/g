@@ -1,4 +1,5 @@
 var $sc = $sc || {};
+var $aw = $aw || {};
 var $utils = {
     /**
      * cookie
@@ -88,8 +89,8 @@ var $utils = {
         window.em_basic = em;
     },
 
-    // uaredirect
-    uaredirect: function (mobile_url) {
+    // ua redirect
+    ua_redirect: function (mobile_url) {
         try {
             if (document.getElementById("bdmark") != null) {
                 return;
@@ -103,11 +104,11 @@ var $utils = {
             }
         } catch (err) {}
     },
-    // adwrite
+    // ad write
     aw: function (mode, size) {
         var str = 'name:' + mode + (size ? ' size:' + size : '');
-        if ($__m_g_com && $__m_g_com[mode]) {
-            str = $__m_g_com[mode];
+        if ($aw && $aw[mode]) {
+            str = $aw[mode];
         }else{
             var wh = size.split('*');
             var w  = wh[0];
@@ -129,7 +130,7 @@ var $utils = {
      * 回到顶部
      * @param id
      */
-    gotop: function (id) {
+    go_top: function (id) {
         id = id || "index-scroll";
         var c = document.getElementById(id);
         var isie6 = (!(window && window.XMLHttpRequest));
@@ -171,13 +172,13 @@ var $utils = {
     },
 
     // go_mobile
-    eve_gomobile: function () {
-        if (typeof $sc != "undefined" && $sc['canonical_wap']) {
-            this.uaredirect($sc.canonical_wap);
+    eve_go_mobile: function () {
+        if (typeof $sc != "undefined" && $sc['page_wap']) {
+            this.ua_redirect($sc.page_wap);
         }
     },
     // 百度提交
-    eve_pushbaidu: function () {
+    eve_push_baidu: function () {
         var bp = document.createElement('script');
         var curProtocol = window.location.protocol.split(':')[0];
         if (curProtocol === 'https') {
